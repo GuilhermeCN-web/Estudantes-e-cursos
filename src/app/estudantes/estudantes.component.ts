@@ -27,13 +27,18 @@ export class EstudantesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.service.getStudents().subscribe({
-        next: json => this.students = json
+    this.loadStudents();
+  }
+
+  loadStudents(){
+    this.service.getAll().subscribe({
+      next: json => this.students = json
     })
   }
+
   save()
   {
-    this.service.saveStudents(this.formGroupStudent.value)
+    this.service.save(this.formGroupStudent.value)
     .subscribe(
       {
         next: json => {
@@ -42,6 +47,14 @@ export class EstudantesComponent implements OnInit {
         }
       }
     )
+  }
+
+  delete(student: Student) {
+    this.service.deleteStudents(student).subscribe(
+      {
+        next: () => this.loadStudents()
+      }
+    );
   }
 }
  

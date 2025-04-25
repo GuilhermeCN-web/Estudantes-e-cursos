@@ -11,11 +11,19 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  getStudents(): Observable<Student[]>{
+  getAll(): Observable<Student[]>{
     return this.http.get<Student[]>(this.apiURL);
   }
 
-  saveStudents(student:Student): Observable<Student>{
+  save(student:Student): Observable<Student>{
     return this.http.post<Student>(this.apiURL, student);
   } 
+
+  deleteStudents(student:Student): Observable<void>{
+    return this.http.delete<void>(`${this.apiURL}/${student.id}`);
+  }
+
+  update(student:Student): Observable<Student>{
+    return this.http.put<Student>(`${this.apiURL}/${student.id}`, student);
+  }
 }
