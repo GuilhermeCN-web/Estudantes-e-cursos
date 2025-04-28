@@ -1,1 +1,55 @@
-<p>course works!</p>
+<div class="container bg-light">
+    <div class="row">
+        <div class="col-7 m-auto">
+            <h1 class="text-center">Cadastro de Cursos</h1>
+            <form [formGroup]="formGroupCourse">
+
+                <div class="mb-3">
+                    <label for="inputCourse" class="form-label">Nome do Curso: </label>
+                    <input formControlName="course" type="text" class="form-control" id="inputCourse" aria-describedby="courseHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="inputCourse" class="form-label">Tempo do Curso: </label>
+                  <input formControlName="tempo" type="text" class="form-control" id="inputTempo" aria-describedby="courseHelp">
+              </div>
+              <div class="mb-3">
+                <label for="inputCourse" class="form-label">Turno do Curso: </label>
+                <input formControlName="turno" type="text" class="form-control" id="inputTurno" aria-describedby="courseHelp">
+              </div>
+              <div class="mb-3">
+                <label for="inputCourse" class="form-label">Modalidade do Curso: </label>
+                <input formControlName="modalidade" type="text" class="form-control" id="inputModalidade" aria-describedby="courseHelp">
+              </div>
+                <input type="submit" (click)="save()" type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+                <label class="btn btn-secondary" for="option2">Salvar</label>
+              </form>
+
+              <h1 class="text-center">Cursos Cadastrados</h1>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Curso</th>
+                    <th scope="col">Tempo</th>
+                    <th scope="col">Turno</th>
+                    <th scope="col">Modalidade</th>
+                    <th scope="col">Remover</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of courses">
+                    <th scope="row">{{c.id}}</th>
+                    <td>{{c.course}}</td>
+                    <td>{{c.tempo}}</td>
+                    <td>{{c.turno}}</td>
+                    <td>{{c.modalidade}}</td>
+                    <td><button class="btn btn-danger" (click)="delete(c)">Remover</button></td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+        </div>
+    </div>    
+</div>
+ 
